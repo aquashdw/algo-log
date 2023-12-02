@@ -33,7 +33,7 @@ public class BFPatternMatching {
             }
         }
 
-        if (foundAt.size() == 0) {
+        if (foundAt.isEmpty()) {
             System.out.println("404 NOT FOUND");
         } else {
 //            foundAt.forEach(startIdx -> System.out.println(
