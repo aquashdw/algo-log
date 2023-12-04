@@ -5,65 +5,76 @@ import java.util.StringTokenizer;
 
 // https://school.programmers.co.kr/learn/courses/30/lessons/172928
 public class Prob172928 {
-    public int[] solution(String[] park, String[] routes) {
+    public int[] solution(String[] parkStr, String[] routes) {
         int[] answer = new int[2];
+        int height = parkStr.length;
+        int width = parkStr[0].length();
+
         // 시작지점 기록
-        for (int i = 0; i < park.length; i++) {
-            if (park[i].contains("S")) {
-                int x = park[i].indexOf("S");
+        for (int i = 0; i < parkStr.length; i++) {
+            if (parkStr[i].contains("S")) {
+                int x = parkStr[i].indexOf("S");
                 answer[0] = i;
                 answer[1] = x;
                 break;
             }
         }
-        int width = park[0].length();
-        int height = park.length;
+        // 문자열 공원을 char[][]로 변형
+        char[][] park = new char[parkStr.length][];
+        for (int i = 0; i < parkStr.length; i++) {
+            park[i] = parkStr[i].toCharArray();
+        }
 
         for (String route : routes) {
-            StringTokenizer routeToken = new StringTokenizer(route);
-            String direction = routeToken.nextToken();
-            Integer dist = Integer.parseInt(routeToken.nextToken());
+            String[] routeInfo = route.split(" ");
+            String direction = routeInfo[0];
+            int distance = Integer.parseInt(routeInfo[1]);
             boolean blocked = false;
             switch (direction) {
                 case "E" -> {
-                    for (int i = 1; i < dist + 1; i++) {
-                        if (answer[1] + i >= width || park[answer[0]].charAt(answer[1] + i) == 'X') {
+                    for (int i = 1; i < distance + 1; i++) {
+                        if (answer[1] + i >= width || park[answer[0]][answer[1] + i] == 'X') {
                             blocked = true;
                             break;
                         }
                     }
-                    if (!blocked) answer[1] += dist;
+                    if (!blocked) answer[1] += distance;
                 }
                 case "W" -> {
-                    for (int i = 1; i < dist + 1; i++) {
-                        if (answer[1] - i < 0 || park[answer[0]].charAt(answer[1] - i) == 'X') {
+                    for (int i = 1; i < distance + 1; i++) {
+                        if (answer[1] - i < 0 || park[answer[0]][answer[1] - i] == 'X') {
                             blocked = true;
                             break;
                         }
                     }
-                    if (!blocked) answer[1] -= dist;
+                    if (!blocked) answer[1] -= distance;
                 }
                 case "N" -> {
-                    for (int i = 1; i < dist + 1; i++) {
-                        if (answer[0] - i < 0 || park[answer[0] - i].charAt(answer[1]) == 'X') {
+                    for (int i = 1; i < distance + 1; i++) {
+                        if (answer[0] - i < 0 || park[answer[0] - i][answer[1]] == 'X') {
                             blocked = true;
                             break;
                         }
                     }
-                    if (!blocked) answer[0] -= dist;
+                    if (!blocked) answer[0] -= distance;
                 }
                 case "S" -> {
-                    for (int i = 1; i < dist + 1; i++) {
-                        if (answer[0] + i >= height || park[answer[0] + i].charAt(answer[1]) == 'X') {
+                    for (int i = 1; i < distance + 1; i++) {
+                        if (answer[0] + i >= height || park[answer[0] + i][answer[1]] == 'X') {
                             blocked = true;
                             break;
                         }
                     }
-                    if (!blocked) answer[0] += dist;
+                    if (!blocked) answer[0] += distance;
                 }
             }
         }
         return answer;
+    }
+
+    // 공원을 벗어나는지 확인하기 위한 메서드
+    public boolean checkBounds(int y, int x, int height, int width) {
+        return 0 <= y && y < height && 0 <= x && x < width;
     }
 
     public static void main(String[] args) {
