@@ -4,7 +4,7 @@ package queue;
 public class MyCyQueue {
     private final int size = 4;
     private final int offset = size + 1;
-    private final int[] arr = new int[size];
+    private final int[] arr = new int[offset];
     private int front = 0;
     private int rear = 0;
 
@@ -45,15 +45,19 @@ public class MyCyQueue {
 
     public static void main(String[] args) {
         MyCyQueue intQueue = new MyCyQueue();
+        System.out.println(intQueue.isEmpty());
+        System.out.println(intQueue.isFull());
         intQueue.enQueue(4);
         intQueue.enQueue(2);
         intQueue.enQueue(3);
         intQueue.enQueue(5);
         intQueue.enQueue(5);
+        System.out.println(intQueue.isFull());
         System.out.println(intQueue.deQueue());
         System.out.println(intQueue.deQueue());
         System.out.println(intQueue.deQueue());
         System.out.println(intQueue.deQueue());
+        System.out.println(intQueue.isEmpty());
 
 //        Queue<Integer> queue = new LinkedList<>();
 //        Deque<Integer> deque = new ArrayDeque<>();
