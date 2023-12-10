@@ -1,9 +1,6 @@
 package stack;
 
-public class Main {
-//    int recursion = 0;
-
-
+public class StackOverflow {
     public static void main(String[] args) {
         recursion();
     }
