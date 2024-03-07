@@ -8,15 +8,15 @@ import java.util.*;
 public class BreadthFirstSearch {
     public void adjMat() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
-        int maxNodes = Integer.parseInt(tokenizer.nextToken());
+        String[] info = reader.readLine().split(" ");
+        int maxNodes = Integer.parseInt(info[0]);
 
         int[][] adjMap = new int[maxNodes + 1][maxNodes + 1];
-        int edges = Integer.parseInt(tokenizer.nextToken());
+        int edges = Integer.parseInt(info[1]);
         for (int i = 0; i < edges; i++) {
-            StringTokenizer edgeTokenizer = new StringTokenizer(reader.readLine());
-            int leftNode = Integer.parseInt(edgeTokenizer.nextToken());
-            int rightNode = Integer.parseInt(edgeTokenizer.nextToken());
+            String[] edgeInfo = reader.readLine().split(" ");
+            int leftNode = Integer.parseInt(edgeInfo[0]);
+            int rightNode = Integer.parseInt(edgeInfo[1]);
             adjMap[leftNode][rightNode] = 1;
             adjMap[rightNode][leftNode] = 1;
         }
@@ -56,19 +56,19 @@ public class BreadthFirstSearch {
 
     public void adjList() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
-        int maxNodes = Integer.parseInt(tokenizer.nextToken());
+        String[] info = reader.readLine().split(" ");
+        int maxNodes = Integer.parseInt(info[0]);
 
         List<List<Integer>> adjList = new ArrayList<>();
         for (int i = 0; i < maxNodes; i++) {
             adjList.add(new ArrayList<>());
         }
 
-        int edges = Integer.parseInt(tokenizer.nextToken());
+        int edges = Integer.parseInt(info[1]);
         for (int i = 0; i < edges; i++) {
-            StringTokenizer edgeTokenizer = new StringTokenizer(reader.readLine());
-            int leftNode = Integer.parseInt(edgeTokenizer.nextToken());
-            int rightNode = Integer.parseInt(edgeTokenizer.nextToken());
+            String[] edgeInfo = reader.readLine().split(" ");
+            int leftNode = Integer.parseInt(edgeInfo[0]);
+            int rightNode = Integer.parseInt(edgeInfo[1]);
             adjList.get(leftNode).add(rightNode);
             adjList.get(rightNode).add(leftNode);
         }

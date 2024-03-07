@@ -4,19 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.PriorityQueue;
-import java.util.StringTokenizer;
 
 public class Prob15903 {
     public long solution() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer infoToken = new StringTokenizer(reader.readLine());
-        int cardCount = Integer.parseInt(infoToken.nextToken());
-        int actions = Integer.parseInt(infoToken.nextToken());
+        String[] info = reader.readLine().split(" ");
+        int cardCount = Integer.parseInt(info[0]);
+        int actions = Integer.parseInt(info[1]);
 
-        StringTokenizer cardToken = new StringTokenizer(reader.readLine());
+        String[] cards = reader.readLine().split(" ");
         PriorityQueue<Long> smallestCards = new PriorityQueue<>();
         for (int i = 0; i < cardCount; i++) {
-            smallestCards.offer(Long.parseLong(cardToken.nextToken()));
+            smallestCards.offer(Long.parseLong(cards[i]));
         }
 
         for (int i = 0; i < actions; i++) {
