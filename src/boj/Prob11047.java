@@ -8,9 +8,9 @@ import java.util.StringTokenizer;
 public class Prob11047 {
     public int solution() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer info = new StringTokenizer(reader.readLine());
-        int coinKinds = Integer.parseInt(info.nextToken());
-        int targetAmount = Integer.parseInt(info.nextToken());
+        String[] info = reader.readLine().split(" ");
+        int coinKinds = Integer.parseInt(info[0]);
+        int targetAmount = Integer.parseInt(info[1]);
         int[] coinAmounts = new int[coinKinds];
         // 역순 입력
         for (int i = 0; i < coinKinds; i++) {
