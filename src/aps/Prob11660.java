@@ -10,15 +10,15 @@ import java.util.StringTokenizer;
 public class Prob11660 {
     public void solution() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer infoToken = new StringTokenizer(reader.readLine());
-        int size = Integer.parseInt(infoToken.nextToken());
-        int points = Integer.parseInt(infoToken.nextToken());
+        String[] info = reader.readLine().split(" ");
+        int size = Integer.parseInt(info[0]);
+        int points = Integer.parseInt(info[1]);
 
         int[][] board = new int[size + 1][size + 1];
         for (int i = 1; i < size + 1; i++) {
-            StringTokenizer rowToken = new StringTokenizer(reader.readLine());
+            String[] row = reader.readLine().split(" ");
             for (int j = 1; j < size + 1; j++) {
-                board[i][j] = Integer.parseInt(rowToken.nextToken());
+                board[i][j] = Integer.parseInt(row[j - 1]);
             }
         }
 
@@ -32,11 +32,11 @@ public class Prob11660 {
         StringBuilder answer = new StringBuilder();
 
         for (int i = 0; i < points; i++) {
-            StringTokenizer pointToken = new StringTokenizer(reader.readLine());
-            int x1 = Integer.parseInt(pointToken.nextToken());
-            int y1 = Integer.parseInt(pointToken.nextToken());
-            int x2 = Integer.parseInt(pointToken.nextToken());
-            int y2 = Integer.parseInt(pointToken.nextToken());
+            String[] pointInfo = reader.readLine().split(" ");
+            int x1 = Integer.parseInt(pointInfo[0]);
+            int y1 = Integer.parseInt(pointInfo[1]);
+            int x2 = Integer.parseInt(pointInfo[2]);
+            int y2 = Integer.parseInt(pointInfo[3]);
             int sum = dp[x2][y2] - dp[x2][y1 - 1] - dp[x1 - 1][y2] + dp[x1 - 1][y1 - 1];
             answer.append(sum).append('\n');
         }
