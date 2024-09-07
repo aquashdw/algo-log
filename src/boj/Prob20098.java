@@ -24,7 +24,7 @@ public class Prob20098 {
 //        dfs(0, 0);
         int offset = 0;
         for (int i = 0; i < n * n; i++) {
-            if (i != 0 && i % 20 == 0) offset++;
+            if (i != 0 && i % n == 0) offset++;
             for (int j = 0; j < n * n; j++) {
                 int next = j + offset;
                 next += i * n;
