@@ -16,9 +16,6 @@ public class Prob25319 {
                 .mapToInt(Integer::parseInt).toArray();
         int h = info[0];
         int w = info[1];
-        int wordLength = info[2];
-
-        char[][] board = new char[h][w];
         List<List<int[]>> positions = new ArrayList<>();
         for (int i = 0; i < 26; i++) {
             positions.add(new ArrayList<>());
@@ -27,7 +24,6 @@ public class Prob25319 {
             String line = reader.readLine();
             for (int j = 0; j < w; j++) {
                 positions.get(line.charAt(j) - 'a').add(new int[]{i, j});
-                board[i][j] = line.charAt(j);
             }
         }
         String name = reader.readLine();
