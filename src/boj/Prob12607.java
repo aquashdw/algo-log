@@ -34,16 +34,26 @@ public class Prob12607 {
         StringBuilder answer = new StringBuilder();
         for (int i = 0; i < tests; i++) {
             answer.append("Case #").append(i + 1).append(": ");
-            int lastPress = -1;
-            for (char digit : reader.readLine().toCharArray()) {
+            reader.readLine().chars().reduce(-1, (lastPress, digit) -> {
                 int thisPress;
                 if (digit == ' ') thisPress = 0;
                 else thisPress = keyMap[digit - 'a'];
 
                 if (thisPress == lastPress) answer.append(' ');
-                lastPress = thisPress;
                 answer.append(digit == ' ' ? 0 : hitMap[digit - 'a']);
-            }
+                return thisPress;
+            });
+
+//            int lastPress = -1;
+//            for (char digit : reader.readLine().toCharArray()) {
+//                int thisPress;
+//                if (digit == ' ') thisPress = 0;
+//                else thisPress = keyMap[digit - 'a'];
+//
+//                if (thisPress == lastPress) answer.append(' ');
+//                lastPress = thisPress;
+//                answer.append(digit == ' ' ? 0 : hitMap[digit - 'a']);
+//            }
             answer.append('\n');
         }
         System.out.print(answer);
