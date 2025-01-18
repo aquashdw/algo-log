@@ -12,26 +12,26 @@ public class Prob31793 {
         long totalBalls = (long) Math.pow(2, depth) - 1;
         int tests = Integer.parseInt(reader.readLine());
         StringBuilder answer = new StringBuilder();
-        reader.lines().limit(tests).mapToLong(Long::parseLong).forEach(num -> {
-            answer.append(find(num, 1, totalBalls, false)).append('\n');
-        });
+        reader.lines().limit(tests).mapToLong(Long::parseLong).forEach(num ->
+                answer.append(find(num, totalBalls, 1)).append('\n'));
         System.out.print(answer);
     }
 
-    private static long find(long target, long node, long remains, boolean left) {
-        // left && even -> right
-        // left && !even -> left
-        // !left && even -> left
-        // !left && !even -> right
-        if (target == remains) return node;
-        boolean even = target % 2 == 0;
-        long next = (target + (even ? 0 : 1)) / 2;
-        remains = (remains - 1) / 2;
-        if (left == even) {
-            return find(next, node * 2 + 1, remains, false);
+    private static long find(long balls, long totalNodes, long nodeNum) {
+        if (balls == totalNodes) return nodeNum;
+        // evenBall && evenNode -> right
+        // evenBall && !evenNode -> left
+        // !evenBall && evenNode -> left
+        // !evenBall && !evenNode -> right
+        boolean evenNode = nodeNum % 2 == 0;
+        boolean evenBall = balls % 2 == 0;
+        long next = (balls + (evenBall ? 0 : 1)) / 2;
+        totalNodes = (totalNodes - 1) / 2;
+        if (evenNode == evenBall) {
+            return find(next, totalNodes, nodeNum * 2 + 1);
         }
         else {
-            return find(next, node * 2, remains, true);
+            return find(next, totalNodes,  nodeNum * 2);
         }
     }
 }
