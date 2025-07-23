@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Prob25991 {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int n =  Integer.parseInt(reader.readLine());
+        reader.readLine();
         double cube = Arrays.stream(reader.readLine().split(" "))
                 .mapToDouble(Double::parseDouble)
                 .map(side -> side * side * side)
