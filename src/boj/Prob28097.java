@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-// https://www.acmicpc.net/problem/2170
-public class Prob2170 {
+// https://www.acmicpc.net/problem/28097
+public class Prob28097 {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(reader.readLine());
