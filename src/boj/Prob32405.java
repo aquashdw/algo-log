@@ -26,9 +26,9 @@ public class Prob32405 {
 
         while (next.size() > 1) {
             int now = next.poll();
-            if (health[now] - total + power[now] * deals[now] < 0) continue;
+            if (health[now] - total + deals[now] < 0) continue;
             total += power[now];
-            deals[now]++;
+            deals[now] += power[now];
             next.offer(now);
         }
         System.out.println(next.poll() + 1);
